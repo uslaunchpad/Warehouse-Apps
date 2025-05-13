@@ -12,7 +12,7 @@ from io import StringIO
 json_creds = json.loads(st.secrets["credentials"])
 creds = ServiceAccountCredentials.from_json_keyfile_dict(json_creds, scope)
 
-sheet = client.open_by_url("https://docs.google.com/spreadsheets/d/1PwvyTVq947Bho9FfpJdzMBM94HMzFRwx4sYWmiE3p8o/edit").sheet1
+sheet = client.open_by_key("1PwvyTVq947Bho9FfpJdzMBM94HMzFRwx4sYWmiE3p8o").sheet1
 
 # UI
 st.title("Warehouse Delivery Recorder")
