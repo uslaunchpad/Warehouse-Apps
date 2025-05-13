@@ -5,8 +5,12 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 # Google Sheets setup
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-creds = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", scope)
-client = gspread.authorize(creds)
+import json
+from io import StringIO
+
+# Load credentials from Streamlit secrets
+json_creds = json.loads(st.secrets["credentials"])
+creds = ServiceAccountCredentials.from_json_keyfile_dict(json_creds, scope)
 
 sheet = client.open_by_url("https://docs.google.com/spreadsheets/d/1PwvyTVq947Bho9FfpJdzMBM94HMzFRwx4sYWmiE3p8o/edit").sheet1
 
