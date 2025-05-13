@@ -10,7 +10,12 @@ from io import StringIO
 
 # Load credentials from Streamlit secrets
 json_creds = json.loads(st.secrets["credentials"])
-creds = ServiceAccountCredentials.from_json_keyfile_name(credentials.json)
+import json
+
+# Load credentials from Streamlit Secrets
+json_creds = json.loads(st.secrets["credentials"])
+
+creds = ServiceAccountCredentials.from_json_keyfile_dict(json_creds, scope)
 
 sheet = client.open_by_key("1PwvyTVq947Bho9FfpJdzMBM94HMzFRwx4sYWmiE3p8o").sheet1
 
